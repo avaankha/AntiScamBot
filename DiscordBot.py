@@ -21,6 +21,9 @@ class DiscordScamBot(discord.Client):
     def __init__(self, *args, **kwargs):
         self.Database = ScamBotDatabase()
         intents = discord.Intents.default()
+        # TOOD: remove after this intent addition is reviewed and accepted. It is needed for the mocks to properly setup member/user creation
+        if (ConfigData.IsDevelopment):
+            intents.members = True
         super().__init__(intents=intents)
         self.Commands = discord.app_commands.CommandTree(self)
         
